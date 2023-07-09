@@ -8,11 +8,19 @@ class Livre
         $this->connection = $connection;
     }
 
-    public function getListeLivresUtilisateur($utilisateurId)
+    public function getLivresUtilisateur($utilisateurId)
     {
-        $query = "SELECT id, titre, auteur, annee_publication FROM livres WHERE utilisateur_id = :utilisateurId";
+        $query = "SELECT * FROM livres WHERE utilisateur_id = :utilisateurId";
         $statement = $this->connection->prepare($query);
         $statement->bindParam(':utilisateurId', $utilisateurId, PDO::PARAM_INT);
+        $statement->execute();
+
+        return $statement->fetchAll();
+    }
+    public function getAllLivres()
+    {
+        $query = "SELECT * FROM livres";
+        $statement = $this->connection->prepare($query);
         $statement->execute();
 
         return $statement->fetchAll();

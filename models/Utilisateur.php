@@ -28,6 +28,21 @@ class Utilisateur
 
         return $statement->fetch();
     }
+    public function ajouterUtilisateur($nom_utilisateur, $email, $mot_de_passe) {
+
+        $sql = "INSERT INTO utilisateurs (nom_utilisateur, email, mot_de_passe) VALUES (:nom_utilisateur, :email, :mot_de_passe)";
+        $stmt = $this->connection->prepare($sql);
+        $stmt->bindValue(':nom_utilisateur', $nom_utilisateur);
+        $stmt->bindValue(':email', $email);
+        $stmt->bindValue(':mot_de_passe', $mot_de_passe);
+
+        if ($stmt->execute()) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
 }
 
 ?>

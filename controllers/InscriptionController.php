@@ -1,4 +1,5 @@
 <?php
+require_once 'models/Utilisateur.php';
 
 class InscriptionController {
     private $connection;

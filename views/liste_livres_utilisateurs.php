@@ -1,29 +1,44 @@
+<?php
+session_start();
+
+if (!isset($_SESSION['utilisateur_id'])) {
+    // Rediriger vers la page de connexion si l'utilisateur n'est pas connecté
+    header('Location: login.php');
+    exit();
+}
+
+require_once '../config.php';
+require_once '../models/Livre.php';
+
+
+$livre = new Livre($connection);
+$listeLivres = $livre->getLivresUtilisateur($_SESSION['utilisateur_id']);
+?>
 <!DOCTYPE html>
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>Liste des Livres de l'Utilisateur</title>
+    <title>Mes Livres</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-<h1>Liste des Livres de l'Utilisateur</h1>
-<?php if (isset($viewData['utilisateur'])) : ?>
-    <p>Bienvenue, <?php echo $viewData['utilisateur']['nom_utilisateur']; ?>!</p>
-<?php endif; ?>
+<h1>Mes Livres</h1>
 <table>
     <tr>
         <th>Titre</th>
         <th>Auteur</th>
-        <th>Année de publication</th>
+        <th>Description</th>
     </tr>
-    <?php foreach ($viewData['livres'] as $livre) : ?>
+    <?php foreach ($listeLivres as $livre) : ?>
         <tr>
             <td><?php echo $livre['titre']; ?></td>
             <td><?php echo $livre['auteur']; ?></td>
-            <td><?php echo $livre['annee_publication']; ?></td>
+            <td><?php echo $livre['description']; ?></td>
         </tr>
     <?php endforeach; ?>
 </table>
+</body>
+</html>
 
 <h2>Ajouter un Livre</h2>
 <form method="POST" action="liste_livres_utilisateur.php">
