@@ -27,6 +27,8 @@ if (isset($_SESSION['utilisateur_id'])) {
         <a href="logout.php" class="button">Déconnexion</a>
         <a href="views/liste_livres_utilisateurs.php" class="button">Mes Livres</a>
         <a href="views/liste_livres.php" class="button">Tous les livres</a>
+        <a href="recherche_livres.php" class="button">Chercher un livre</a>
+
 
     </div>
 <?php else : ?>

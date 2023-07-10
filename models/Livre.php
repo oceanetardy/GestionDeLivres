@@ -37,4 +37,15 @@ class Livre
 
         return $statement->fetchAll();
     }
+
+    public function rechercherLivres($recherche) {
+        $query = "SELECT * FROM livres WHERE titre LIKE :recherche OR auteur LIKE :recherche";
+        $statement = $this->connection->prepare($query);
+        $recherche = '%' . $recherche . '%';
+        $statement->bindParam(':recherche', $recherche, PDO::PARAM_STR);
+        $statement->execute();
+
+        return $statement->fetchAll();
+    }
+
 }
