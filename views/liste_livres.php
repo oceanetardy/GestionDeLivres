@@ -21,7 +21,7 @@ $listeLivres = $livre->getAllLivres();
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-<h1>Tous les liivres Livres</h1>
+<h1>Tous les livres</h1>
 <table>
     <tr>
         <th>Titre</th>
@@ -36,5 +36,7 @@ $listeLivres = $livre->getAllLivres();
         </tr>
     <?php endforeach; ?>
 </table>
+<a href="/gestionlivre" class="button">Retour</a>
+
 </body>
 </html>

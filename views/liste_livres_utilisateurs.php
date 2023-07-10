@@ -10,7 +10,6 @@ if (!isset($_SESSION['utilisateur_id'])) {
 require_once '../config.php';
 require_once '../models/Livre.php';
 
-
 $livre = new Livre($connection);
 $listeLivres = $livre->getLivresUtilisateur($_SESSION['utilisateur_id']);
 ?>
@@ -37,20 +36,19 @@ $listeLivres = $livre->getLivresUtilisateur($_SESSION['utilisateur_id']);
         </tr>
     <?php endforeach; ?>
 </table>
-</body>
-</html>
 
-<h2>Ajouter un Livre</h2>
-<form method="POST" action="liste_livres_utilisateur.php">
-    <label for="titre">Titre:</label>
-    <input type="text" name="titre" required>
-    <label for="auteur">Auteur:</label>
-    <input type="text" name="auteur" required>
-    <label for="annee_publication">Année de publication:</label>
-    <input type="number" name="annee_publication" required>
-    <button type="submit">Ajouter</button>
-</form>
+<!--<h2>Ajouter un Livre</h2>-->
+<!--<form method="POST" action="ajouter_livre.php">-->
+<!--    <label for="titre">Titre:</label>-->
+<!--    <input type="text" name="titre" required>-->
+<!--    <label for="auteur">Auteur:</label>-->
+<!--    <input type="text" name="auteur" required>-->
+<!--    <label for="description">Description:</label>-->
+<!--    <textarea name="description" required></textarea>-->
+<!--    <button type="submit">Ajouter</button>-->
+<!--</form>-->
+<a href="ajouter_livre.php" class="button">Ajouter un livre</a>
 
-<a href="index.php" class="button">Retour</a>
+<a href="/gestionlivre" class="button">Retour</a>
 </body>
 </html>
