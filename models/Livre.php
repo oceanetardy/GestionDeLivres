@@ -47,5 +47,24 @@ class Livre
 
         return $statement->fetchAll();
     }
+    public function getLivresUtilisateur($utilisateurId)
+    {
+        $query = "SELECT * FROM livres WHERE utilisateur_id = :utilisateurId";
+        $statement = $this->connection->prepare($query);
+        $statement->bindParam(':utilisateurId', $utilisateurId, PDO::PARAM_INT);
+        $statement->execute();
+
+        return $statement->fetchAll();
+    }
+
+    public function getAllLivres()
+    {
+        $query = "SELECT * FROM livres";
+        $statement = $this->connection->prepare($query);
+        $statement->execute();
+
+        return $statement->fetchAll();
+    }
+
 
 }
