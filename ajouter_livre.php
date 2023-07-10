@@ -1,7 +1,7 @@
 <?php
 session_start();
-require_once '../config.php';
-require_once '../controllers/AjouterLivreController.php';
+require_once 'config.php';
+require_once 'controllers/AjouterLivreController.php';
 
 // Création de l'instance du contrôleur
 $controller = new AjouterLivreController($connection);

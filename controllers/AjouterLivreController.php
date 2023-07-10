@@ -16,7 +16,7 @@ class AjouterLivreController {
 
         if ($ajoutLivre) {
             // Redirection vers la liste des livres après l'ajout réussi
-            header('Location: liste_livres_utilisateur.php');
+            header('Location: index.php');
             exit();
         } else {
             $viewData['message_erreur'] = 'Erreur lors de l\'ajout du livre.';

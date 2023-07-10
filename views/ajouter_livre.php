@@ -7,12 +7,12 @@
 </head>
 <body>
 <h1>Ajouter un Livre</h1>
-<form method="POST" action="ajouter_livre.php">
+<form method="POST" action="../ajouter_livre.php">
     <label for="titre">Titre:</label>
     <input type="text" name="titre" required>
     <label for="auteur">Auteur:</label>
     <input type="text" name="auteur" required>
-    <label for="annee_publication">Année:</label>
+    <label for="annee_publication">Année de publication:</label>
     <input type="text" name="annee_publication" required>
     <label for="description">Description:</label>
     <textarea name="description" required></textarea>

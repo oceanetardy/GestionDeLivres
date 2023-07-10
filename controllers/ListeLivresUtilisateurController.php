@@ -1,4 +1,6 @@
 <?php
+require_once 'models/Utilisateur.php';
+require_once 'models/Livre.php';
 
 class ListeLivresUtilisateurController {
     private $connection;
