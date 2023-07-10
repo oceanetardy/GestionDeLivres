@@ -1,16 +1,11 @@
 <?php
 require_once 'models/Livre.php';
-require_once 'models/Commentaire.php';
 
 class DetailsLivreController {
-    private $connection;
     private $livre;
-    private $commentaire;
 
-    public function __construct($connection) {
-        $this->connection = $connection;
-        $this->livre = new Livre($connection);
-        $this->commentaire = new Commentaire($connection);
+    public function __construct() {
+        $this->livre = new Livre();
     }
 
     public function afficherDetailsLivre($livreId) {
@@ -25,14 +20,14 @@ class DetailsLivreController {
             include 'views/details_livre.php';
         } else {
             // Livre non trouvé
-            echo 'Livre non trouvé.';
+            echo 'Aucun livre trouvé.';
         }
     }
 
 
-    public function handleAjouterCommentaire($livreId, $contenu) {
+    public function handleAjouterCommentaire($livreId, $utilisateurId, $contenu) {
         // Ajout du commentaire dans la base de données
-        $ajoutCommentaire = $this->commentaire->ajouterCommentaire($livreId, $contenu);
+        $ajoutCommentaire = $this->livre->ajouterCommentaire($livreId, $utilisateurId, $contenu);
 
         if ($ajoutCommentaire) {
             // Redirection vers la page des détails du livre
