@@ -50,4 +50,26 @@ class Livre
     }
 
 
+    public function ajouterCommentaire($livreId, $utilisateurId, $contenu)
+    {
+        $query = "INSERT INTO commentaires (livre_id, utilisateur_id, contenu) VALUES (:livreId, :utilisateurId, :contenu)";
+        $statement = $this->connection->prepare($query);
+        $statement->bindParam(':livreId', $livreId, PDO::PARAM_INT);
+        $statement->bindParam(':utilisateurId', $utilisateurId, PDO::PARAM_INT);
+        $statement->bindParam(':contenu', $contenu, PDO::PARAM_STR);
+        $statement->execute();
+    }
+
+    public function getCommentairesLivre($livreId)
+    {
+        $query = "SELECT * FROM commentaires WHERE livre_id = :livreId";
+        $statement = $this->connection->prepare($query);
+        $statement->bindParam(':livreId', $livreId, PDO::PARAM_INT);
+        $statement->execute();
+
+        return $statement->fetchAll();
+    }
+
+
+
 }

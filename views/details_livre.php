@@ -1,30 +1,33 @@
-<?php
-session_start();
-require_once '../config.php';
-require_once '../models/Livre.php';
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Détails du Livre</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<?php if (isset($livre)) : ?>
+    <h1>Détails du Livre</h1>
+    <h2><?php echo $livre['titre']; ?></h2>
+    <p>Auteur: <?php echo $livre['auteur']; ?></p>
+    <p>Description: <?php echo $livre['description']; ?></p>
 
-if (isset($_GET['id'])) {
-    $livreId = $_GET['id'];
+    <!-- Formulaire pour ajouter un commentaire -->
+    <h2>Ajouter un commentaire</h2>
+    <form method="POST" action="details_livre.php">
+        <input type="hidden" name="livreId" value="<?php echo $livre['id']; ?>">
+        <label for="contenu">Contenu:</label>
+        <textarea name="contenu" required></textarea>
+        <button type="submit">Ajouter</button>
+    </form>
 
-    // Créez une instance du modèle Livre
-    $livre = new Livre($connection);
-
-    // Obtenez les détails du livre par son ID
-    $detailsLivre = $livre->getDetailsLivre($livreId);
-
-    // Affichez les détails du livre
-    if ($detailsLivre) {
-        // Affichez les détails du livre, par exemple :
-        echo '<h1>Détails du livre</h1>';
-        echo '<p>Titre : ' . $detailsLivre['titre'] . '</p>';
-        echo '<p>Auteur : ' . $detailsLivre['auteur'] . '</p>';
-        echo '<p>Description : ' . $detailsLivre['description'] . '</p>';
-        // Autres informations à afficher
-    } else {
-        echo 'Livre introuvable.';
-    }
-} else {
-    echo 'ID du livre manquant.';
-}
-?>
-<a href="/gestionlivre" class="button">Retour</a>
+    <!-- Affichage des commentaires existants -->
+    <h2>Commentaires</h2>
+    <?php foreach ($commentaires as $commentaire) : ?>
+        <p><?php echo $commentaire['contenu']; ?></p>
+    <?php endforeach; ?>
+<?php else : ?>
+    <p>Aucun livre trouvé.</p>
+<?php endif; ?>
+</body>
+</html>
