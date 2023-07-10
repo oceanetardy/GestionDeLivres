@@ -1,15 +1,30 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="UTF-8">
-    <title>Détails du Livre</title>
-    <link rel="stylesheet" href="styles.css">
-</head>
-<body>
-<h1>Détails du Livre</h1>
-<h2><?php echo $livre['titre']; ?></h2>
-<p><strong>Auteur:</strong> <?php echo $livre['auteur']; ?></p>
-<p><strong>Année de publication:</strong> <?php echo $livre['annee_publication']; ?></p>
-<a href="liste_livres.php" class="button">Retour à la liste des livres</a>
-</body>
-</html>
+<?php
+session_start();
+require_once '../config.php';
+require_once '../models/Livre.php';
+
+if (isset($_GET['id'])) {
+    $livreId = $_GET['id'];
+
+    // Créez une instance du modèle Livre
+    $livre = new Livre($connection);
+
+    // Obtenez les détails du livre par son ID
+    $detailsLivre = $livre->getDetailsLivre($livreId);
+
+    // Affichez les détails du livre
+    if ($detailsLivre) {
+        // Affichez les détails du livre, par exemple :
+        echo '<h1>Détails du livre</h1>';
+        echo '<p>Titre : ' . $detailsLivre['titre'] . '</p>';
+        echo '<p>Auteur : ' . $detailsLivre['auteur'] . '</p>';
+        echo '<p>Description : ' . $detailsLivre['description'] . '</p>';
+        // Autres informations à afficher
+    } else {
+        echo 'Livre introuvable.';
+    }
+} else {
+    echo 'ID du livre manquant.';
+}
+?>
+<a href="/gestionlivre" class="button">Retour</a>

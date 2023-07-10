@@ -39,5 +39,15 @@ class Livre
         return $this->connection->lastInsertId();
     }
 
+    public function getDetailsLivre($livreId)
+    {
+        $query = "SELECT * FROM livres WHERE id = :livreId";
+        $statement = $this->connection->prepare($query);
+        $statement->bindParam(':livreId', $livreId, PDO::PARAM_INT);
+        $statement->execute();
+
+        return $statement->fetch();
+    }
+
 
 }
