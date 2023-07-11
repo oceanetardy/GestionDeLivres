@@ -9,17 +9,15 @@ $controller = new AjouterLivreController($connection);
 // Gestion de la requête d'ajout de livre
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $titre = $_POST['titre'];
-    $auteurId = $_POST['auteurId'];
     $nomAuteur = $_POST['nomAuteur'];
     $prenomAuteur = $_POST['prenomAuteur'];
     $description = $_POST['description'];
     $annee_publication = $_POST['annee_publication'];
     $utilisateurId = $_SESSION['utilisateur_id'];
 
-    $controller->handleAjouterLivre($titre, $auteurId, $nomAuteur, $prenomAuteur, $annee_publication, $description, $utilisateurId);
+    $controller->handleAjouterLivre($titre, $nomAuteur, $prenomAuteur, $annee_publication, $description, $utilisateurId);
 }
 
 // Affichage de la vue
-$viewData = $controller->getViewData();
 include 'views/ajouter_livre.php';
 ?>

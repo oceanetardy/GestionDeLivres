@@ -17,7 +17,8 @@ class Auteur
 
         return $statement->fetch();
     }
-    public function ajouterAuteur($nom, $prenom) {
+    public function ajouterAuteur($nom, $prenom)
+    {
         $query = "INSERT INTO auteurs (nom, prenom) VALUES (:nom, :prenom)";
         $statement = $this->connection->prepare($query);
         $statement->bindParam(':nom', $nom, PDO::PARAM_STR);
@@ -26,5 +27,19 @@ class Auteur
 
         return $this->connection->lastInsertId();
     }
+
+    public function getAuteurByNomPrenom($nom, $prenom)
+    {
+        $query = "SELECT * FROM auteurs WHERE nom = :nom AND prenom = :prenom";
+        $statement = $this->connection->prepare($query);
+        $statement->bindParam(':nom', $nom, PDO::PARAM_STR);
+        $statement->bindParam(':prenom', $prenom, PDO::PARAM_STR);
+        $statement->execute();
+
+        return $statement->fetch();
+    }
+
+
+
 
 }

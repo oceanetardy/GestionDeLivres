@@ -49,7 +49,7 @@ $listeLivres = $livre->getLivresUtilisateur($_SESSION['utilisateur_id']);
 <!--    <textarea name="description" required></textarea>-->
 <!--    <button type="submit">Ajouter</button>-->
 <!--</form>-->
-<a href="ajouter_livre.php" class="button">Ajouter un livre</a>
+<a href="../ajouter_livre.php" class="button">Ajouter un livre</a>
 
 <a href="/gestionlivre" class="button">Retour</a>
 </body>

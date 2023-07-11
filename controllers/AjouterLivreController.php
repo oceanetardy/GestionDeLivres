@@ -1,6 +1,6 @@
 <?php
-require_once 'models/Livre.php';
-require_once 'models/Auteur.php';
+require_once './models/Livre.php';
+require_once './models/Auteur.php';
 
 class AjouterLivreController {
     private $connection;
@@ -13,16 +13,21 @@ class AjouterLivreController {
         $this->auteur = new Auteur($connection);
     }
 
-    public function handleAjouterLivre($titre, $auteurId, $nomAuteur, $prenomAuteur, $annee_publication, $description, $utilisateurId) {
-        // Vérifier si l'auteur existe déjà
-        $auteurExiste = $this->auteur->getAuteurById($auteurId);
+    public function handleAjouterLivre($titre, $nomAuteur, $prenomAuteur, $annee_publication, $description, $utilisateurId) {
+        if (empty($nomAuteur) || empty($prenomAuteur)) {
+            $viewData['message_erreur'] = 'Veuillez saisir le nom et le prénom de l\'auteur.';
+            return;
+        }
 
-        if (!$auteurExiste) {
-            // Vérifier si le nom de l'auteur n'est pas vide
-            if (!empty($nomAuteur)) {
-                // L'auteur n'existe pas, on l'ajoute à la table des auteurs
-                $this->auteur->ajouterAuteur($nomAuteur, $prenomAuteur);
-            }
+        // Vérifier si l'auteur existe déjà
+        $auteurExiste = $this->auteur->getAuteurByNomPrenom($nomAuteur, $prenomAuteur);
+
+        if (empty($auteurExiste)) {
+            // L'auteur n'existe pas, on l'ajoute à la table des auteurs
+            $auteurId = $this->auteur->ajouterAuteur($nomAuteur, $prenomAuteur);
+        } else {
+            // L'auteur existe déjà, on récupère son ID
+            $auteurId = $auteurExiste['id'];
         }
 
         // Insertion du livre dans la base de données
@@ -41,4 +46,4 @@ class AjouterLivreController {
         return [];
     }
 }
-
+?>
