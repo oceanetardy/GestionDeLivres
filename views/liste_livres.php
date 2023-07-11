@@ -18,7 +18,7 @@ $listeLivres = $livre->getAllLivres();
 <head>
     <meta charset="UTF-8">
     <title>Tous les Livres</title>
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="../styles.css">
 </head>
 <body>
 <h1>Tous les livres</h1>

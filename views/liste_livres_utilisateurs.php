@@ -20,7 +20,7 @@ $listeLivres = $livre->getLivresUtilisateur($_SESSION['utilisateur_id']);
 <head>
     <meta charset="UTF-8">
     <title>Mes Livres</title>
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="../styles.css">
 </head>
 <body>
 <h1>Mes Livres</h1>

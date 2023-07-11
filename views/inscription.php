@@ -14,7 +14,10 @@
     <input type="email" name="email" required>
     <label for="mot_de_passe">Mot de passe:</label>
     <input type="password" name="mot_de_passe" required>
-    <button type="submit">S'inscrire</button>
+    <button class="button" type="submit">S'inscrire</button>
 </form>
+<p>Déjà un compte?</p>
+<a href="login.php">Se connecter</a>
+
 </body>
 </html>

@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Connexion</title>
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="./styles.css">
 </head>
 <body>
 <h1>Connexion</h1>
@@ -12,8 +12,8 @@
     <input type="email" name="email" required>
     <label for="mot_de_passe">Mot de passe:</label>
     <input type="password" name="mot_de_passe" required>
-    <button type="submit">Se connecter</button>
+    <button class="button" type="submit">Se connecter</button>
 </form>
-<p>Pas encore inscrit? <a href="inscription.php">S'inscrire</a></p>
+<p>Pas encore inscrit?</p> <a href="inscription.php">S'inscrire</a>
 </body>
 </html>
