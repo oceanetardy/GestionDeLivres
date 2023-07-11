@@ -17,5 +17,14 @@ class Auteur
 
         return $statement->fetch();
     }
+    public function ajouterAuteur($nom, $prenom) {
+        $query = "INSERT INTO auteurs (nom, prenom) VALUES (:nom, :prenom)";
+        $statement = $this->connection->prepare($query);
+        $statement->bindParam(':nom', $nom, PDO::PARAM_STR);
+        $statement->bindParam(':prenom', $prenom, PDO::PARAM_STR);
+        $statement->execute();
+
+        return $this->connection->lastInsertId();
+    }
 
 }

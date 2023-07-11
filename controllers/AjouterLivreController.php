@@ -13,17 +13,20 @@ class AjouterLivreController {
         $this->auteur = new Auteur($connection);
     }
 
-    public function handleAjouterLivre($titre, $auteurId, $annee_publication, $description, $utilisateurId) {
+    public function handleAjouterLivre($titre, $auteurId, $nomAuteur, $prenomAuteur, $annee_publication, $description, $utilisateurId) {
         // Vérifier si l'auteur existe déjà
         $auteurExiste = $this->auteur->getAuteurById($auteurId);
 
         if (!$auteurExiste) {
-            // L'auteur n'existe pas, on l'ajoute à la table des auteurs
-            $auteurId = $this->auteur->ajouterAuteur($auteurId);
+            // Vérifier si le nom de l'auteur n'est pas vide
+            if (!empty($nomAuteur)) {
+                // L'auteur n'existe pas, on l'ajoute à la table des auteurs
+                $this->auteur->ajouterAuteur($nomAuteur, $prenomAuteur);
+            }
         }
 
         // Insertion du livre dans la base de données
-        $ajoutLivre = $this->livre->ajouterLivreUtilisateur($titre, $auteurId, $annee_publication, $description, $utilisateurId);
+        $ajoutLivre = $this->livre->ajouterLivre($titre, $auteurId, $annee_publication, $description, $utilisateurId);
 
         if ($ajoutLivre) {
             // Redirection vers la liste des livres après l'ajout réussi

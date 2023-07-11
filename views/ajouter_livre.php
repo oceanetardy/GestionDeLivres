@@ -11,14 +11,14 @@
     <label for="titre">Titre:</label>
     <input type="text" name="titre" required><br>
 
-    <label for="auteurNom">Nom de l'auteur:</label>
-    <input type="text" name="auteurNom" required><br>
+    <label for="nom">Nom de l'auteur:</label>
+    <input type="text" name="nom" required><br>
 
-    <label for="auteurPrenom">Prénom de l'auteur:</label>
-    <input type="text" name="auteurPrenom" required><br>
+    <label for="prenom">Prénom de l'auteur:</label>
+    <input type="text" name="prenom" required><br>
 
-    <label for="anneePublication">Année de publication:</label>
-    <input type="text" name="anneePublication" required><br>
+    <label for="annee_publication">Année de publication:</label>
+    <input type="text" name="annee_publication" required><br>
 
     <label for="description">Description:</label>
     <textarea name="description" required></textarea><br>
