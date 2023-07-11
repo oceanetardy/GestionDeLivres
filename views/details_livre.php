@@ -21,6 +21,7 @@
         <button type="submit">Ajouter</button>
     </form>
 
+
     <!-- Affichage des commentaires existants -->
     <h2>Commentaires</h2>
     <?php foreach ($commentaires as $commentaire) : ?>
@@ -29,5 +30,8 @@
 <?php else : ?>
     <p>Aucun livre trouvé.</p>
 <?php endif; ?>
+
+<a href="/gestionlivre" class="button">Retour</a>
+
 </body>
 </html>
