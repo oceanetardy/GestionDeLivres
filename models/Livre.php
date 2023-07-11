@@ -46,7 +46,7 @@ class Livre
     }
 
     public function rechercherLivres($recherche) {
-        $query = "SELECT * FROM livres              
+        $query = "SELECT * , livres.id FROM livres              
     INNER JOIN auteurs ON livres.auteur_id = auteurs.id
  WHERE titre LIKE :recherche OR nom LIKE :recherche OR prenom LIKE :recherche";
         $statement = $this->connection->prepare($query);

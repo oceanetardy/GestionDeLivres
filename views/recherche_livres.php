@@ -22,9 +22,11 @@
             <th>Auteur</th>
             <th>Description</th>
         </tr>
-        <?php foreach ($resultats as $livre) : ?>
+        <?php foreach ($resultats as $livre) :?>
+        <?php var_dump($livre);?>
             <tr>
-                <td><?php echo $livre['titre']; ?></td>
+
+                <td><a href="details_livre.php?livreId=<?php echo $livre['id']; ?>"><?php echo $livre['titre']; ?></a></td>
                 <td><?php echo $livre['nom']; ?></td>
                 <td><?php echo $livre['prenom']; ?></td>
                 <td><?php echo $livre['description']; ?></td>
