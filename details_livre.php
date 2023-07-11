@@ -4,7 +4,7 @@ session_start();
 require_once 'config.php';
 require_once 'controllers/DetailsLivreController.php';
 
-$controller = new DetailsLivreController();
+$controller = new DetailsLivreController($connection);
 
 if (!isset($_GET['livreId'])) {
     header('Location: index.php');

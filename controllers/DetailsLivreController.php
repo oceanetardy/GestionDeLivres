@@ -4,10 +4,9 @@ require_once 'models/Livre.php';
 class DetailsLivreController {
     private $livre;
 
-    public function __construct() {
-        $this->livre = new Livre();
+    public function __construct($connection) {
+        $this->livre = new Livre($connection);
     }
-
     public function afficherDetailsLivre($livreId) {
         // Récupération des détails du livre
         $livre = $this->livre->getDetailsLivre($livreId);
