@@ -46,7 +46,9 @@ class Livre
 
     public function getCommentairesLivre($livreId)
     {
-        $query = "SELECT * FROM commentaires WHERE livre_id = :livreId";
+        $query = "SELECT * FROM commentaires c
+                INNER JOIN utilisateurs u ON u.id = c.utilisateur_id
+            WHERE livre_id = :livreId";
         $statement = $this->connection->prepare($query);
         $statement->bindParam(':livreId', $livreId, PDO::PARAM_INT);
         $statement->execute();
