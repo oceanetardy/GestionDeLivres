@@ -9,6 +9,8 @@ if (!isset($_SESSION['utilisateur_id'])) {
 
 require_once '../config.php';
 require_once '../models/Livre.php';
+require_once '../models/Auteur.php';
+
 
 $livre = new Livre($connection);
 $listeLivres = $livre->getLivresUtilisateur($_SESSION['utilisateur_id']);
@@ -31,7 +33,7 @@ $listeLivres = $livre->getLivresUtilisateur($_SESSION['utilisateur_id']);
     <?php foreach ($listeLivres as $livre) : ?>
         <tr>
             <td><a href="../details_livre.php?livreId=<?php echo $livre['id']; ?>"><?php echo $livre['titre']; ?></a></td>
-            <td><?php echo $livre['nom'] . ' ' . $livre['prenom']; ?></td>
+            <td><?php echo $livre['nom_auteur'] . ' ' . $livre['prenom_auteur']; ?></td>
             <td><?php echo $livre['description']; ?></td>
         </tr>
     <?php endforeach; ?>

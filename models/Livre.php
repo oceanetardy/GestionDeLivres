@@ -56,13 +56,17 @@ class Livre
     }
     public function getLivresUtilisateur($utilisateurId)
     {
-        $query = "SELECT * FROM livres WHERE utilisateur_id = :utilisateurId";
+        $query = "SELECT livres.*, auteurs.nom AS nom_auteur, auteurs.prenom AS prenom_auteur
+              FROM livres
+              INNER JOIN auteurs ON livres.auteur_id = auteurs.id
+              WHERE livres.utilisateur_id = :utilisateurId";
         $statement = $this->connection->prepare($query);
         $statement->bindParam(':utilisateurId', $utilisateurId, PDO::PARAM_INT);
         $statement->execute();
 
         return $statement->fetchAll();
     }
+
 
     public function getAllLivres()
     {
