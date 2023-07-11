@@ -46,7 +46,9 @@ class Livre
     }
 
     public function rechercherLivres($recherche) {
-        $query = "SELECT * FROM livres WHERE titre LIKE :recherche OR auteur LIKE :recherche";
+        $query = "SELECT * FROM livres              
+    INNER JOIN auteurs ON livres.auteur_id = auteurs.id
+ WHERE titre LIKE :recherche OR nom LIKE :recherche OR prenom LIKE :recherche";
         $statement = $this->connection->prepare($query);
         $recherche = '%' . $recherche . '%';
         $statement->bindParam(':recherche', $recherche, PDO::PARAM_STR);

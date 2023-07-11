@@ -25,7 +25,8 @@
         <?php foreach ($resultats as $livre) : ?>
             <tr>
                 <td><?php echo $livre['titre']; ?></td>
-                <td><?php echo $livre['auteur']; ?></td>
+                <td><?php echo $livre['nom']; ?></td>
+                <td><?php echo $livre['prenom']; ?></td>
                 <td><?php echo $livre['description']; ?></td>
             </tr>
         <?php endforeach; ?>
