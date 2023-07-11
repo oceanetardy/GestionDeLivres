@@ -9,7 +9,7 @@
 <?php if (isset($livre)) : ?>
     <h1>Détails du Livre</h1>
     <h2><?php echo $livre['titre']; ?></h2>
-    <p>Auteur: <?php echo $livre['auteur']; ?></p>
+    <p>Auteur: <?php echo $livre['nom'] . ' ' . $livre['prenom']; ?></p>
     <p>Description: <?php echo $livre['description']; ?></p>
 
     <!-- Formulaire pour ajouter un commentaire -->

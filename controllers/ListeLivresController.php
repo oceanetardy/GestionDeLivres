@@ -1,5 +1,4 @@
 <?php
-
 class ListeLivresController {
     private $connection;
     private $livre;
@@ -20,10 +19,10 @@ class ListeLivresController {
 
     public function afficherListeLivres() {
         // Récupération de la liste de tous les livres
-        $listeLivres = $this->livre->getAllLivres();
+        $listeLivres = $this->livre->getListeLivres();
 
         // Affichage de la vue avec les données
         include 'views/liste_livres.php';
     }
-
 }
+

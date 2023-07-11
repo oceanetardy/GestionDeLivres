@@ -10,7 +10,9 @@ class Livre
 
     public function getDetailsLivre($livreId)
     {
-        $query = "SELECT * FROM livres WHERE id = :livreId";
+        $query = "SELECT l.*, a.nom, a.prenom FROM livres l
+              INNER JOIN auteurs a ON l.auteur_id = a.id
+              WHERE l.id = :livreId";
         $statement = $this->connection->prepare($query);
         $statement->bindParam(':livreId', $livreId, PDO::PARAM_INT);
         $statement->execute();
@@ -18,15 +20,20 @@ class Livre
         return $statement->fetch();
     }
 
-    public function ajouterCommentaire($livreId, $utilisateurId, $contenu)
-    {
-        $query = "INSERT INTO commentaires (livre_id, utilisateur_id, contenu) VALUES (:livreId, :utilisateurId, :contenu)";
+
+    public function ajouterLivre($titre, $auteurId, $anneePublication, $description, $utilisateurId) {
+        $query = "INSERT INTO livres (titre, auteur_id, annee_publication, description, utilisateur_id) VALUES (:titre, :auteurId, :anneePublication, :description, :utilisateurId)";
         $statement = $this->connection->prepare($query);
-        $statement->bindParam(':livreId', $livreId, PDO::PARAM_INT);
+        $statement->bindParam(':titre', $titre, PDO::PARAM_STR);
+        $statement->bindParam(':auteurId', $auteurId, PDO::PARAM_INT);
+        $statement->bindParam(':anneePublication', $anneePublication, PDO::PARAM_STR);
+        $statement->bindParam(':description', $description, PDO::PARAM_STR);
         $statement->bindParam(':utilisateurId', $utilisateurId, PDO::PARAM_INT);
-        $statement->bindParam(':contenu', $contenu, PDO::PARAM_STR);
         $statement->execute();
+
+        return $this->connection->lastInsertId();
     }
+
 
     public function getCommentairesLivre($livreId)
     {
@@ -59,12 +66,16 @@ class Livre
 
     public function getAllLivres()
     {
-        $query = "SELECT * FROM livres";
+        $query = "SELECT l.*, a.nom, a.prenom FROM livres l
+              INNER JOIN auteurs a ON l.auteur_id = a.id";
         $statement = $this->connection->prepare($query);
         $statement->execute();
 
         return $statement->fetchAll();
     }
+
+
+
 
 
 }

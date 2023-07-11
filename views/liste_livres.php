@@ -31,7 +31,7 @@ $listeLivres = $livre->getAllLivres();
     <?php foreach ($listeLivres as $livre) : ?>
         <tr>
             <td><a href="../details_livre.php?livreId=<?php echo $livre['id']; ?>"><?php echo $livre['titre']; ?></a></td>
-            <td><?php echo $livre['auteur']; ?></td>
+            <td><?php echo $livre['nom'] . ' ' . $livre['prenom']; ?></td>
             <td><?php echo $livre['description']; ?></td>
         </tr>
     <?php endforeach; ?>

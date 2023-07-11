@@ -27,4 +27,16 @@ class ListeLivresUtilisateurController {
             'livres' => $livres
         ];
     }
+
+    public function afficherListeLivresUtilisateur() {
+        // Récupération de l'ID de l'utilisateur connecté
+        $utilisateurId = $_SESSION['utilisateur_id'];
+
+        // Récupération de la liste des livres de l'utilisateur
+        $listeLivresUtilisateur = $this->getListeLivresUtilisateur($utilisateurId);
+
+        // Affichage de la vue avec les données
+        include 'views/liste_livres_utilisateurs.php';
+    }
 }
+
