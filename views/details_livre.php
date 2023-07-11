@@ -14,7 +14,7 @@
 
     <!-- Formulaire pour ajouter un commentaire -->
     <h2>Ajouter un commentaire</h2>
-    <form method="POST" action="details_livre.php">
+    <form method="POST" action="details_livre.php?livreId=<?php echo $livre['id']; ?>">
         <input type="hidden" name="livreId" value="<?php echo $livre['id']; ?>">
         <label for="contenu">Contenu:</label>
         <textarea name="contenu" required></textarea>

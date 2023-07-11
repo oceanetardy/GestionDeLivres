@@ -26,14 +26,12 @@ class DetailsLivreController {
 
     public function handleAjouterCommentaire($livreId, $utilisateurId, $contenu) {
         // Ajout du commentaire dans la base de données
-        $ajoutCommentaire = $this->livre->ajouterCommentaire($livreId, $utilisateurId, $contenu);
+        $this->livre->ajouterCommentaire($livreId, $utilisateurId, $contenu);
 
-        if ($ajoutCommentaire) {
-            // Redirection vers la page des détails du livre
-            header('Location: details_livre.php?livreId=' . $livreId);
-            exit();
-        } else {
-            echo 'Erreur lors de l\'ajout du commentaire.';
-        }
+        // Redirection vers la page des détails du livre
+        header('Location: details_livre.php?livreId=' . $livreId);
+        exit();
     }
+
+
 }
