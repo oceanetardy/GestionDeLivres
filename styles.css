@@ -32,6 +32,11 @@ input[type="number"] {
     margin-bottom: 10px;
 }
 
+td,th,tr {
+    margin: 10px;
+}
+
+
 button {
     padding: 10px 20px;
     font-size: 14px;
