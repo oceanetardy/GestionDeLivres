@@ -25,6 +25,7 @@
     <!-- Affichage des commentaires existants -->
     <h2>Commentaires</h2>
     <?php foreach ($commentaires as $commentaire) : ?>
+        <p><?php echo $commentaire['utilisateur_id']; ?> : </p>
         <p><?php echo $commentaire['contenu']; ?></p>
     <?php endforeach; ?>
 <?php else : ?>
