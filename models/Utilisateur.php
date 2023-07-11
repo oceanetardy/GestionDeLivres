@@ -43,6 +43,21 @@ class Utilisateur
         }
     }
 
+    public function enregistrerUtilisateur($nom_utilisateur, $email, $mot_de_passe)
+    {
+        // Hachage du mot de passe
+        $hashedPassword = password_hash($mot_de_passe, PASSWORD_DEFAULT);
+
+        // Requête d'insertion de l'utilisateur avec le mot de passe haché
+        $query = "INSERT INTO utilisateurs (nom_utilisateur, email, mot_de_passe) VALUES (:nom_utilisateur, :email, :mot_de_passe)";
+        $statement = $this->connection->prepare($query);
+        $statement->bindParam(':nom_utilisateur', $nom_utilisateur, PDO::PARAM_STR);
+        $statement->bindParam(':email', $email, PDO::PARAM_STR);
+        $statement->bindParam(':mot_de_passe', $hashedPassword, PDO::PARAM_STR);
+
+        return $statement->execute();
+    }
+
 }
 
 ?>

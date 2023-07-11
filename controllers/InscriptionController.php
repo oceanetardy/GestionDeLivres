@@ -16,8 +16,7 @@ class InscriptionController {
         if ($utilisateurExist) {
             $viewData['message_erreur'] = 'Cet email est déjà utilisé.';
         } else {
-            $this->utilisateur->ajouterUtilisateur($nom_utilisateur, $email, $mot_de_passe);
-            $_SESSION['utilisateur_id'] = $this->connection->lastInsertId();
+            $this->utilisateur->enregistrerUtilisateur($nom_utilisateur, $email, $mot_de_passe);
             header('Location: index.php');
             exit();
         }
