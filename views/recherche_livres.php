@@ -23,7 +23,6 @@
             <th>Description</th>
         </tr>
         <?php foreach ($resultats as $livre) :?>
-        <?php var_dump($livre);?>
             <tr>
 
                 <td><a href="details_livre.php?livreId=<?php echo $livre['id']; ?>"><?php echo $livre['titre']; ?></a></td>
